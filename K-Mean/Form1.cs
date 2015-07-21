@@ -43,7 +43,8 @@ namespace K_Mean
         {
             if (_kmeanCore.fileName != string.Empty)
             {
-                _kmeanCore.ProcessKMnean(20);
+                _kmeanCore.numberCluster = 5;
+                _kmeanCore.ProcessKMnean();
                 Screen.Text += _kmeanCore.ToString();
             }
             else

@@ -36,12 +36,13 @@
             // Screen
             // 
             this.Screen.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.Screen.Dock = System.Windows.Forms.DockStyle.Top;
             this.Screen.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Screen.ForeColor = System.Drawing.SystemColors.Info;
             this.Screen.Location = new System.Drawing.Point(0, 0);
             this.Screen.Margin = new System.Windows.Forms.Padding(4);
             this.Screen.Name = "Screen";
-            this.Screen.Size = new System.Drawing.Size(1113, 422);
+            this.Screen.Size = new System.Drawing.Size(861, 422);
             this.Screen.TabIndex = 0;
             this.Screen.Text = "";
             // 
@@ -71,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 467);
+            this.ClientSize = new System.Drawing.Size(861, 465);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Screen);

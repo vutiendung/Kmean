@@ -14,6 +14,7 @@ namespace K_Mean
         public List<VectorDefine> ListItem = new List<VectorDefine>();
         int[] MarkUp;
         public string fileName;
+        public int numberCluster;
 
         public void ReadDataFromExel(RichTextBox Screen)
         {
@@ -22,6 +23,8 @@ namespace K_Mean
             dt = MoFileExcel.GetDatasetFromExcel(fileName);
             total = dt.Rows.Count;
             int step = total / 100;
+            if (step == 0)
+                step = 1;
             if (dt != null)
             {
                 Screen.Text += "Loading data\n";
@@ -50,8 +53,11 @@ namespace K_Mean
                 Screen.Text += "\n";
             }
         }
-
-        public void ProcessKMnean(int k)
+        /// <summary>
+        /// ham su ly chinh cua kmean
+        /// </summary>
+        /// <param name="k"></param>
+        public void ProcessKMnean()
         {
             List<VectorDefine> ListCluster = new List<VectorDefine>();
             MarkUp=new int[ListItem.Count];
@@ -60,16 +66,21 @@ namespace K_Mean
                 MarkUp[i] = -1;
             }
 
-            int step = ListItem.Count / k;
+            int step = ListItem.Count / numberCluster;
             for (int i = 0; i < ListItem.Count; )
             {
                 ListCluster.Add(ListItem[i]);
                 i += step;
             }
-
+            int soLanLap = 0;
             bool change = true;
             while (change)
             {
+                soLanLap++;
+                if (soLanLap == 100)
+                {
+                    break;
+                }
                 for (int i = 0; i < ListItem.Count; i++)
                 {
                     double minDistance = ListItem[i].getDistance(ListCluster[0]);
@@ -102,8 +113,10 @@ namespace K_Mean
                             NewVector.AddNewValue(ListItem[i]);
                         }
                     }
+
                     NewVector.Average(dem);
-                    if (NewVector.EqualWithOtherVector(OldVector))
+
+                    if (!NewVector.EqualWithOtherVector(OldVector))
                     {
                         change = true;
                     }
@@ -115,9 +128,14 @@ namespace K_Mean
         {
             string s = "";
 
-            for (int i = 0; i < ListItem.Count; i++)
+            for (int i = 0; i < numberCluster;i++ )
             {
-                s += "User ["+i+"] nhóm :"+MarkUp[i]+"\n";
+                s += "Nhom "+(i+1)+"\n";
+                for (int j = 0; j < ListItem.Count; j++)
+                {
+                    if(MarkUp[j]==i)
+                        s += "\tUser "+(j+1)+"\n";
+                }
             }
 
             return s;
