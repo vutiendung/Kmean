@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.IO;
+using System.Windows.Forms;
 
 namespace K_Mean
 {
@@ -14,14 +15,23 @@ namespace K_Mean
         int[] MarkUp;
         public string fileName;
 
-        public void ReadDataFromExel()
+        public void ReadDataFromExel(RichTextBox Screen)
         {
+            int total = 0;
             DataTable dt;
-            dt = MoFileExcel.GetDatasetFromExcel(fileName); 
+            dt = MoFileExcel.GetDatasetFromExcel(fileName);
+            total = dt.Rows.Count;
+            int step = total / 100;
             if (dt != null)
             {
+                Screen.Text += "Loading data\n";
                 for (int i = 0; i < dt.Rows.Count;i++ )
                 {
+                    if((int)i*100/total%step==0)
+                    {
+                        Screen.Text += "█";
+                        SendKeys.Flush();
+                    }
                     VectorDefine vtTG = new VectorDefine();
                     for (int j = 0; j < dt.Columns.Count; j++)
                     {
@@ -37,6 +47,7 @@ namespace K_Mean
                     ListItem.Add(vtTG);
                     vtTG = null;
                 }
+                Screen.Text += "\n";
             }
         }
 

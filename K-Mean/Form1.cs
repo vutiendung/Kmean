@@ -26,7 +26,7 @@ namespace K_Mean
             {
                 _kmeanCore.fileName = op.FileName;
                 Screen.Text += _kmeanCore.fileName + "\n";
-                _kmeanCore.ReadDataFromExel();
+                _kmeanCore.ReadDataFromExel(Screen);
                 Screen.Text += "Read file completed!\n";
             }
         }
@@ -43,7 +43,7 @@ namespace K_Mean
         {
             if (_kmeanCore.fileName != string.Empty)
             {
-                _kmeanCore.ProcessKMnean(5);
+                _kmeanCore.ProcessKMnean(20);
                 Screen.Text += _kmeanCore.ToString();
             }
             else
