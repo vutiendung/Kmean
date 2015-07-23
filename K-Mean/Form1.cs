@@ -44,8 +44,6 @@ namespace K_Mean
         {
             if (_kmeanCore.fileName != string.Empty)
             {
-                if (checkBox1.Checked)
-                    _kmeanCore.NormelizeData();
                 _kmeanCore.numberCluster = 6;
                 _kmeanCore.ProcessKMnean();
                 Screen.Text += _kmeanCore.ToString();
@@ -54,6 +52,16 @@ namespace K_Mean
             {
                 Screen.Text += "Please select file data!\n";
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ShowData();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            _kmeanCore.NormelizeData();
         }
     }
 }
