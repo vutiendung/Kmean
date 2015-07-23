@@ -8,11 +8,11 @@ namespace K_Mean
 {
     class VectorDefine
     {
-        public List<int> Item = new List<int>();
+        public List<double> Item = new List<double>();
 
         public double getDistance(VectorDefine input)
         {
-            int tong = 0;
+            double tong = 0;
             for (int i = 0; i < Item.Count; i++)
             {
                 tong += (Item[i] - input.Item[i]) * (Item[i] - input.Item[i]);
@@ -55,12 +55,39 @@ namespace K_Mean
                 return true;
             }
         }
+
         public void Average(int k)
         {
             for (int i = 0; i < Item.Count; i++)
             {
                 Item[i] /= k;
             }
+        }
+
+        public void Normalize()
+        {
+            double colSum=0;
+            for(int i=0;i<Item.Count;i++)
+            {
+                colSum += Item[i];
+            }
+            double mean = (double)colSum / Item.Count;
+
+            double sum = 0;
+            for (int i = 0; i < Item.Count; i++)
+            {
+                sum += (Item[i] - mean) * (Item[i] - mean);
+            }
+
+            double sd = sum / Item.Count;
+
+            //binh thuong hoa du lieu o doan nay
+
+            for (int i = 0; i < Item.Count; i++)
+            {
+                Item[i]=(Item[i] - mean) / sd;
+            }
+
         }
     }
 }

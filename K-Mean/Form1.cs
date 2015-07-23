@@ -28,6 +28,7 @@ namespace K_Mean
                 Screen.Text += _kmeanCore.fileName + "\n";
                 _kmeanCore.ReadDataFromExel(Screen);
                 Screen.Text += "Read file completed!\n";
+                button1.Enabled = false;
             }
         }
 
@@ -43,7 +44,9 @@ namespace K_Mean
         {
             if (_kmeanCore.fileName != string.Empty)
             {
-                _kmeanCore.numberCluster = 5;
+                if (checkBox1.Checked)
+                    _kmeanCore.NormelizeData();
+                _kmeanCore.numberCluster = 6;
                 _kmeanCore.ProcessKMnean();
                 Screen.Text += _kmeanCore.ToString();
             }

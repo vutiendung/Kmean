@@ -53,6 +53,7 @@ namespace K_Mean
                 Screen.Text += "\n";
             }
         }
+
         /// <summary>
         /// ham su ly chinh cua kmean
         /// </summary>
@@ -139,6 +140,36 @@ namespace K_Mean
             }
 
             return s;
+        }
+
+        /// <summary>
+        /// Binh thuong hoa du lieu
+        /// </summary>
+        public void NormelizeData()
+        {
+            for (int i = 0; i < ListItem.Count; i++)
+            {
+                ListItem[i].Normalize();
+            }
+        }
+
+        /// <summary>
+        /// Show data to screen
+        /// </summary>
+        /// <param name="s"></param>
+        public void PrintData(RichTextBox s)
+        {
+            for (int i = 0; i < ListItem.Count; i++)
+            {
+                for (int j = 0; j < ListItem[i].Item.Count; j++)
+                {
+                    s.Text += ListItem[i].Item[j] + " ";
+                    if (j == ListItem[i].Item.Count - 1)
+                    {
+                        s.Text += "\n";
+                    }
+                }
+            }
         }
     }
 }
