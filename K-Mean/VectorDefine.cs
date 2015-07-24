@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace K_Mean
 {
@@ -13,7 +14,8 @@ namespace K_Mean
         public double getDistance(VectorDefine input)
         {
             double tong = 0;
-            for (int i = 0; i < Item.Count; i++)
+            int min = Item.Count > input.Item.Count ? input.Item.Count : Item.Count;
+            for (int i = 0; i < min; i++)
             {
                 tong += (Item[i] - input.Item[i]) * (Item[i] - input.Item[i]);
             }
@@ -88,6 +90,17 @@ namespace K_Mean
                 Item[i]=(Item[i] - mean) / sd;
             }
 
+        }
+
+        public object[] getObject()
+        {
+            object[] ob = new object[Item.Count];
+
+            for (int i = 0; i < Item.Count; i++)
+            {
+                ob[i] = Item[i];
+            }
+            return ob;
         }
     }
 }

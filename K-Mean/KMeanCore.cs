@@ -171,5 +171,32 @@ namespace K_Mean
                 }
             }
         }
+
+        /// <summary>
+        /// Export data to list table
+        /// </summary>
+        public List<DataTable> ExportData()
+        {
+            List<DataTable> dt = new List<DataTable>();
+
+            for (int i = 0; i < numberCluster; i++)
+            {
+                DataTable tg = new DataTable();
+                for (int j = 0; j < ListItem[i].Item.Count; j++)
+                {
+                    tg.Columns.Add();
+                }
+                for (int j = 0; j < ListItem.Count; j++)
+                {
+                    if (MarkUp[j] == i)
+                    {
+                        tg.Rows.Add(ListItem[j].getObject());
+                    }
+                }
+                dt.Add(tg);
+                tg = null;
+            }
+            return dt;
+        }
     }
 }

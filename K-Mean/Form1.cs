@@ -63,5 +63,26 @@ namespace K_Mean
         {
             _kmeanCore.NormelizeData();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            List<DataTable> dt = new List<DataTable>();
+            dt=_kmeanCore.ExportData();
+            for (int i = 0; i < dt.Count; i++)
+            {
+                Screen.Text += "Group {"+i+"}\t";
+                for(int m=0;m<dt[i].Rows.Count;m++)
+                    for (int n = 0; n < dt[i].Columns.Count; n++)
+                    {
+                        Screen.Text += "  " + dt[i].Rows[m][n].ToString() ;
+                        if (n == dt[i].Columns.Count - 1)
+                        {
+                            Screen.Text += "\n";
+                        }
+                    }
+            }
+
+            return;
+        }
     }
 }
